@@ -177,7 +177,7 @@ NAN_METHOD(convert_blob) {
         if (!construct_parent_block(b, parent_block)) return THROW_ERROR_EXCEPTION("convert_blob: Failed to construct parent block");
         if (!get_block_hashing_blob(parent_block, output)) return THROW_ERROR_EXCEPTION("convert_blob: Failed to create mining block");
     } else {
-        if (BLOB_TYPE_CRYPTONOTE == blob_type && info.Length() > 2 && !info[2]->IsNumber()) { // MM
+        if (info.Length() > 2 && !info[2]->IsNumber()) { // MM
             if (!fillExtraMM(b, b2)) {
                 return THROW_ERROR_EXCEPTION("convert_blob: Failed to add merged mining tag to parent block extra");
             }
@@ -264,7 +264,7 @@ NAN_METHOD(construct_block_blob) {
         if (POW_TYPE_NOT_SET != pow_type) b.minor_version = pow_type;
         if (!construct_parent_block(b, parent_block)) return THROW_ERROR_EXCEPTION("Failed to construct parent block");
         if (!mergeBlocks(parent_block, b, std::vector<crypto::hash>())) return THROW_ERROR_EXCEPTION("Failed to postprocess mining block");
-    } else if (BLOB_TYPE_CRYPTONOTE == blob_type && info.Length() > 3 && !info[3]->IsNumber()) { // MM
+    } else if (info.Length() > 3 && !info[3]->IsNumber()) { // MM
             if (!fillExtraMM(b, b2)) {
                 return THROW_ERROR_EXCEPTION("Failed to add merged mining tag to parent block extra");
             }
