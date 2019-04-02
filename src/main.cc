@@ -366,7 +366,7 @@ NAN_METHOD(merge_blocks) {
     blobdata output = "";
 
     block b = AUTO_VAL_INIT(b);
-    b.set_blob_type(BLOB_TYPE_CRYPTONOTE_LOKI);
+    b.set_blob_type(BLOB_TYPE_CRYPTONOTE);
     if (!parse_and_validate_block_from_blob(block_template_blob, b)) return THROW_ERROR_EXCEPTION("Failed to parse parent block (merge_blocks)");
 
     block b2 = AUTO_VAL_INIT(b2);
